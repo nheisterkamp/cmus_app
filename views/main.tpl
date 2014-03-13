@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>cmus on {{host}}</title>
@@ -6,58 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/kube.min.css"/>
     <link rel="stylesheet" type="text/css" href="/static/font-awesome.min.css"/>
-    <style type="text/css">
-        .wrapper {
-            width: 940px;
-            margin: 0 auto;
-            padding: 2em;
-        }
-        .controls {
-            font-size: 2.2em;
-            padding: 1ex 0;
-        }
-        @media only screen and (min-width: 768px) and (max-width: 959px) {
-            .wrapper { width: 728px; }
-        }
-        @media only screen and (min-width: 480px) and (max-width: 767px) {
-            .wrapper { width: 420px; }
-            .controls { font-size: 1.4em; }
-        }
-        @media only screen and (max-width: 479px) {
-            .wrapper { width: 300px; }
-            .controls { font-size: 1em; }
-        }
-        #status {
-            overflow: hidden;
-            position: relative;
-            min-height: 2em;
-            padding: 1ex 0;
-            background-color: #f5f5f5;
-            border: 1px solid #e3e3e3;
-            -webkit-border-radius: 1ex;
-            -moz-border-radius: 1ex;
-            border-radius: 1ex;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-        }
-        #status p {
-            display: inline-block;
-            margin: 0 1em;
-            line-height: 1em;
-            padding: .5em 0 .5em 0;
-        }
-        .vol {
-            position: absolute;
-            bottom: 0;
-            right: 1ex;
-            font-size: .67em;
-        }
-        #result {
-            min-height: 2em;
-        }
-        footer { position: fixed; bottom: 1ex; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/cmus_app.css"/>
 </head>
 <body>
 <div class="wrapper">
@@ -65,80 +14,150 @@
 <div id="status"></div>
 
 <div class="controls">
-
-    <span class="btn-group">
+    <li class="input-groups">
         <button class="cmd-btn btn" title="Previous"><i class="icon-fast-backward"></i></button>
         <button class="cmd-btn btn" title="Play"><i class="icon-play"></i></button>
         <button class="cmd-btn btn" title="Stop"><i class="icon-stop"></i></button>
         <button class="cmd-btn btn" title="Next"><i class="icon-fast-forward"></i></button>
-    </span>
+    </li>
 
-    <span class="btn-group">
+    <li class="input-groups">
         <button class="cmd-btn btn" title="Mute"><i class="icon-volume-off"></i></button>
         <button class="cmd-btn btn" title="Reduce Volume"><i class="icon-volume-down"></i></button>
         <button class="cmd-btn btn" title="Increase Volume"><i class="icon-volume-up"></i></button>
-    </span>
+    </li>
 
-    <button class="status-btn btn btn-round" title="Update Status"><i class="icon-info-sign"></i></button>
-
+    <li class="input-groups">
+        <button class="status-btn btn btn-round" title="Update Status"><i class="icon-info-sign"></i></button>
+    </li>
 </div>
 
 <div id="result"></div>
 
+<div id="playurl">
+    <h2>Play URL</h2>
+    <div class="input-groups">
+        <input type="text" id="url" placeholder="http://"/>
+        <span class="btn-append">
+            <button class="playurl-btn btn" title="Play">Play</button>
+        </span>
+    </div>
+</div>
+
+<div id="playlists">
+    <h2>Playlists</h2>
+
+    <div class="visible-{{di_visible}}">
+        <h3>Digitally Imported</h3>
+        <div class="units-row">
+            <div class="unit-25">
+                <ul>
+                    <li><a href="#di:ambient">Ambient</a></li>
+                    <li><a href="#di:bigroomhouse">Big Room House</a></li>
+                    <li><a href="#di:breaks">Breaks</a></li>
+                    <li><a href="#di:chillhop">ChillHop</a></li>
+                    <li><a href="#di:chillout">Chillout</a></li>
+                    <li><a href="#di:chilloutdreams">Chillout Dreams</a></li>
+                    <li><a href="#di:chillstep">Chillstep</a></li>
+                    <li><a href="#di:chiptunes">Chiptunes</a></li>
+                    <li><a href="#di:classiceurodance">Classic EuroDance</a></li>
+                    <li><a href="#di:classiceurodisco">Classic EuroDisco</a></li>
+                    <li><a href="#di:classictrance">Classic Trance</a></li>
+                    <li><a href="#di:classicvocaltrance">Classic Vocal Trance</a></li>
+                    <li><a href="#di:clubdubstep">Club Dubstep</a></li>
+                    <li><a href="#di:clubsounds">Club Sounds</a></li>
+                    <li><a href="#di:cosmicdowntempo">Cosmic Downtempo</a></li>
+                    <li><a href="#di:djmixes">DJ Mixes</a></li>
+                    <li><a href="#di:darkdnb">Dark DnB</a></li>
+                    <li><a href="#di:deephouse">Deep House</a></li>
+                </ul>
+            </div>
+            <div class="unit-25">
+                <ul>
+                    <li><a href="#di:deepnudisco">Deep Nu-Disco</a></li>
+                    <li><a href="#di:deeptech">Deep Tech</a></li>
+                    <li><a href="#di:discohouse">Disco House</a></li>
+                    <li><a href="#di:downtempolounge">Downtempo Lounge</a></li>
+                    <li><a href="#di:drumandbass">Drum 'n Bass</a></li>
+                    <li><a href="#di:dubstep">Dubstep</a></li>
+                    <li><a href="#di:eclectronica">EcLectronica</a></li>
+                    <li><a href="#di:electrohouse">Electro House</a></li>
+                    <li><a href="#di:electronicpioneers">Electronic Pioneers</a></li>
+                    <li><a href="#di:electropop">Electropop</a></li>
+                    <li><a href="#di:epictrance">Epic Trance</a></li>
+                    <li><a href="#di:eurodance">EuroDance</a></li>
+                    <li><a href="#di:funkyhouse">Funky House</a></li>
+                    <li><a href="#di:futuresynthpop">Future Synthpop</a></li>
+                    <li><a href="#di:gabber">Gabber</a></li>
+                    <li><a href="#di:glitchhop">Glitch Hop</a></li>
+                    <li><a href="#di:goapsy">Goa-Psy Trance</a></li>
+                    <li><a href="#di:handsup">Hands Up</a></li>
+                </ul>
+            </div>
+            <div class="unit-25">
+                <ul>
+                    <li><a href="#di:harddance">Hard Dance</a></li>
+                    <li><a href="#di:hardtechno">Hard Techno</a></li>
+                    <li><a href="#di:hardcore">Hardcore</a></li>
+                    <li><a href="#di:hardstyle">Hardstyle</a></li>
+                    <li><a href="#di:house">House</a></li>
+                    <li><a href="#di:latinhouse">Latin House</a></li>
+                    <li><a href="#di:liquiddnb">Liquid DnB</a></li>
+                    <li><a href="#di:liquiddubstep">Liquid Dubstep</a></li>
+                    <li><a href="#di:lounge">Lounge</a></li>
+                    <li><a href="#di:mainstage">Mainstage</a></li>
+                    <li><a href="#di:minimal">Minimal</a></li>
+                    <li><a href="#di:moombahton">Moombahton</a></li>
+                    <li><a href="#di:oldschoolacid">Oldschool Acid</a></li>
+                    <li><a href="#di:oldschoolelectronica">Oldschool Techno & Trance </a></li>
+                    <li><a href="#di:progressive">Progressive</a></li>
+                    <li><a href="#di:progressivepsy">Progressive Psy</a></li>
+                    <li><a href="#di:psychill">PsyChill</a></li>
+                </ul>
+            </div>
+            <div class="unit-25">
+                <ul>
+                    <li><a href="#di:psybient">Psybient</a></li>
+                    <li><a href="#di:russianclubhits">Russian Club Hits</a></li>
+                    <li><a href="#di:sankeys">Sankeys Radio</a></li>
+                    <li><a href="#di:scousehouse">Scouse House</a></li>
+                    <li><a href="#di:soulfulhouse">Soulful House</a></li>
+                    <li><a href="#di:spacemusic">Space Dreams</a></li>
+                    <li><a href="#di:techhouse">Tech House</a></li>
+                    <li><a href="#di:techno">Techno</a></li>
+                    <li><a href="#di:trance">Trance</a></li>
+                    <li><a href="#di:trap">Trap</a></li>
+                    <li><a href="#di:tribalhouse">Tribal House</a></li>
+                    <li><a href="#di:ukgarage">UK Garage</a></li>
+                    <li><a href="#di:umfradio">UMF Radio</a></li>
+                    <li><a href="#di:undergroundtechno">Underground Techno</a></li>
+                    <li><a href="#di:vocalchillout">Vocal Chillout</a></li>
+                    <li><a href="#di:vocallounge">Vocal Lounge</a></li>
+                    <li><a href="#di:vocaltrance">Vocal Trance</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3>Radiostations</h3>
+    <ul>
+        <li><a href="http://icecast.omroep.nl/3fm-bb-mp3">3FM</a></li>
+    </ul>
+</div>
+
 <footer>
-    <p class="small gray-light"><i class="icon-play-circle"></i> This is <code>cmus</code> running on {{host}}.</p>
+    <p class="small gray-light">
+        <i class="icon-play-circle"></i> This is <code>cmus</code> running on {{host}}.
+    </p>
 </footer>
 
 </div>
 <script src="/static/zepto.min.js"></script>
-<script type="text/javascript">
-    function postCommand(command){
-        $.post('/cmd', {command: command}, function(response){
-            if (response.result == 0) {var msg = '<p class="green label"><i class="icon-ok"></i> ' + command + '</p>'} 
-            else {var msg = '<p class="red label"><i class="icon-remove"></i> ' + command + '</p>'}
-            if (response.output) msg += '<pre>' + response.output + '</pre>';
-            $("div#result").html(msg)
-        }, 'json');
-    }
-    function updateStatus(){
-        $.ajax({url: '/status', dataType: 'json', context: $("div#status"), success: function(response){
-            if (response.playing == true) {var status = '<p>'}
-            if (response.playing == false) {var status = '<p class="gray">'}
-            if (response.artist != null & response.title != null & response.album != null & response.date != null)
-                {status += response.artist + ': <strong>' + response.title + '</strong> (' + response.album + ', ' + response.date.substring(0,4) + ')'}
-            else if (response.artist != null & response.title != null & response.album != null)
-                {status += response.artist + ': <strong>' + response.title + '</strong> (' + response.album + ')'}
-            else if (response.artist != null & response.title != null & response.date != null)
-                {status += response.artist + ': <strong>' + response.title + '</strong> (' + response.date.substring(0,4) + ')'}
-            else if (response.artist != null & response.title != null)
-                {status += response.artist + ': <strong>' + response.title + '</strong>'}
-            else if (response.title != null)
-                {status += '<strong>' + response.title + '</strong>'}
-            else if (response.artist != null)
-                {status += response.artist + ': <strong>(unknown)</strong>'}
-            else {status += '<em>none/unknown</em>'}
-            status += '</p><span class="vol gray">';
-            if (response.vol_left != null) {status += response.vol_left}
-            if (response.shuffle == 'true') {status += ' <i class="icon-random"></i>'}
-            if (response.repeat == 'true') {status += ' <i class="icon-refresh"></i>'}
-            status += '</span>';
-            this.html(status)
-        }})
-    }
-    $(".status-btn").on('click', (function() {
-        updateStatus()
-    }))
-    $(".cmd-btn").on('click', (function(){
-        var cmd = $(this).attr('title');
-        postCommand(cmd);
-        updateStatus();
-    }))
-    $("div#result").on('click', (function(){
-        $(this).empty()
-    }))
-    Zepto(function() {
-        updateStatus()
-    })
+<script>
+    var diServer = '{{di_server}}',
+        diSuffix = '{{di_suffix}}',
+        diListenKey = '{{di_listenkey}}';
 </script>
+<script src="/static/cmus_app.js"></script>
 </body>
 </html>
