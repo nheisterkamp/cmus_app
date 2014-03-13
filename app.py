@@ -65,11 +65,10 @@ def run_command():
 
     if legal_commands.has_key(command):
         if command == 'Play URL':
-            out = Remote('-C', 'clear')
-            outmsg = out.stdout
-            out = Remote('-C', 'add ' + url)
+            outmsg = ''
+            out = Remote('-C', 'clear -q')
             outmsg += out.stdout
-            out = Remote('-C', 'player-play')
+            out = Remote('-C', 'add -Q ' + url)
             outmsg += out.stdout
             out = Remote('-C', 'player-next')
             outmsg += out.stdout
