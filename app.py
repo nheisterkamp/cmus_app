@@ -3,7 +3,7 @@ import sys
 from ConfigParser import SafeConfigParser
 from bottle import route, post, run, request, view, response, static_file
 from sh import cmus_remote
-
+from time import sleep
 
 def read_config(config_file):
     r = {}
@@ -64,13 +64,16 @@ def run_command():
     url = request.POST.get('url', default=None)
 
     if legal_commands.has_key(command):
-        if command == 'Play URL':
-            out = Remote('-C', 'clear')
+        if command == 'Play URL':            
+            out = Remote('-C', 'player-stop')
             outmsg = out.stdout
-            out = Remote('-C', 'add ' + url)
+            sleep(1)
+            out = Remote('-C', 'clear')
             outmsg += out.stdout
-            out = Remote('-C', 'player-play')
+            sleep(1)
+            out = Remote('-C', 'add -Q ' + url)
             outmsg += out.stdout
+            sleep(1)
             out = Remote('-C', 'player-next')
             outmsg += out.stdout
             out = Remote('-C', 'player-play')
