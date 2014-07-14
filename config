@@ -1,9 +1,9 @@
 [cmus_app]
-cmus_host = raspberry ;host running cmus (with --listen <host>)
-cmus_passwd = PaSsWd  ;cmus password (use :set passwd=<passwd>)
-app_host = localhost  ;host running web app [optional; defaults to cmus_host]
-app_port = 8080       ;port for web app [optional; defaults to 8080]
-di_visible = false
-di_server =
-di_suffix =
-di_listenkey =
+cmus_host = localhost ;host running cmus (with --listen <host>)
+cmus_passwd = lemmein ;cmus password (use :set passwd=<passwd>)
+app_host = 0.0.0.0    ;host running web app [optional; defaults to cmus_host]
+app_port = 80         ;port for web app [optional; defaults to 8080]
+di_visible = true
+di_server = http://prem2.di.fm
+di_suffix = _hi
+di_listenkey = 4128da393008b0679e12ebf1

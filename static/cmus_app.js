@@ -25,6 +25,26 @@
         }, 'json');
     }
 
+    function tvCommand(command) {
+        console.log('tvCommand', command);
+        $.post('/tv', {
+            command: command
+        }, function(response) {
+            var msg;
+            if (response.result === 0) {
+                msg = '<p class="green label"><i class="icon-ok"></i> ' + command + '</p>';
+            }
+            else {
+                msg = '<p class="red label"><i class="icon-remove"></i> ' + command + '</p>';
+            }
+            if (response.output) {
+                msg += '<pre>' + response.output + '</pre>';
+            }
+
+            $('#result').html(msg);
+        }, 'json');
+    }
+
     function updateStatus() {
         console.log('updateStatus');
         $.ajax({
@@ -121,11 +141,23 @@
         updateStatus();
     });
 
-    $('.cmd-btn').on('click', function() {
-        console.log('.cmd-btn :: click');
+    $('.cmus-btn').on('click', function() {
+        console.log('.cmus-btn :: click');
         var cmd = $(this).attr('title');
         postCommand(cmd);
         updateStatus();
+    });
+
+    $('.tv-btn').on('click', function() {
+        console.log('.tv-btn :: click');
+        var cmd = $(this).data('cmd');
+        tvCommand(cmd);
+    });
+
+    $('.cec-btn').on('click', function() {
+        console.log('.cec-btn :: click');
+        var cmd = $('#cec-cmd').val();
+        tvCommand(cmd);
     });
 
     $('.playurl-btn').on('click', function() {
@@ -156,6 +188,18 @@
 
     $('div#result').on('click', function() {
         $(this).empty();
+    });
+
+    $('#randomDI').on('click', function(e) {
+        e.preventDefault();
+
+        var as = $('a[href^="#di"]'),
+            l = as.length,
+            i = Math.floor(Math.random() * l);
+
+        as[i].click();
+
+        return false;
     });
 
     $(function() {

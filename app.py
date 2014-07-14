@@ -3,6 +3,7 @@ import sys
 from ConfigParser import SafeConfigParser
 from bottle import route, post, run, request, view, response, static_file
 from sh import cmus_remote
+from sh import cec_client
 from time import sleep
 
 def read_config(config_file):
@@ -65,15 +66,11 @@ def run_command():
 
     if legal_commands.has_key(command):
         if command == 'Play URL':            
-            out = Remote('-C', 'player-stop')
-            outmsg = out.stdout
-            sleep(1)
-            out = Remote('-C', 'clear')
+            outmsg = ''
+            out = Remote('-C', 'clear -q')
             outmsg += out.stdout
-            sleep(1)
             out = Remote('-C', 'add -Q ' + url)
             outmsg += out.stdout
-            sleep(1)
             out = Remote('-C', 'player-next')
             outmsg += out.stdout
             out = Remote('-C', 'player-play')
@@ -88,6 +85,18 @@ def run_command():
         }
     else:
         pass
+
+@post('/tv')
+def run_command():
+    command = request.POST.get('command', default=None)
+
+    out = cec_client("-s", "-d", 1, _in=command)
+    outmsg = out.stdout
+
+    return {
+        'result': out.exit_code,
+        'output': outmsg
+    }
 
 @route('/status')
 def get_status():
@@ -124,5 +133,5 @@ if __name__ == '__main__':
         CONFIG=['config','config.ini','.config']
     settings = read_config(CONFIG)
     Remote = cmus_remote.bake('--server', settings['cmus_host'],'--passwd', settings['cmus_passwd'])
+    # CEC = cec_client('-s', '-d', 1)
     run(host = settings['app_host'], port = settings['app_port'])
-
