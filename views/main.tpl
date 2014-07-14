@@ -134,12 +134,12 @@
                     <li><a href="#di:mainstage" title="Mainstage - The biggest DJs from the best festivals around the world!">Mainstage</a></li>
                     <li><a href="#di:minimal" title="Minimal - Finest selection of Minimal Techno &amp; House!!">Minimal</a></li>
                     <li><a href="#di:moombahton" title="Moombahton - Hot House meets Dancehall Reggaeton">Moombahton</a></li>
-                    <li><a href="#di:nightcore" title="DI - Nightcore">DI</a></li>
+                    <li><a href="#di:nightcore" title="Nightcore">Nightcore</a></li>
                     <li><a href="#di:nudisco" title="Nu Disco House - A modern twist on 70s &amp; 80s Disco and Funk.">Nu Disco House</a></li>
                     <li><a href="#di:oldschoolacid" title="Oldschool Acid - Oldschool sounds of Acid Techno, House, and Trance!">Oldschool Acid</a></li>
                     <li><a href="#di:oldschoolelectronica" title="Oldschool Techno &amp; Trance - old school techno, trance &amp; rave!">Oldschool Techno &amp; Trance</a></li>
                     <li><a href="#di:oldschoolhouse" title="Oldschool House -  The sounds of old school House music!">Oldschool House</a></li>
-                    <li><a href="#di:oldschoolrave" title="DI - Oldschool Rave">DI</a></li>
+                    <li><a href="#di:oldschoolrave" title="Oldschool Rave">Oldschool Rave</a></li>
                     <li><a href="#di:progressive" title="Progressive - house, techno, and trance beats for your mind!">Progressive</a></li>
                     <li><a href="#di:progressivepsy" title="Progressive Psy - progressive psychedelic grooves">Progressive Psy</a></li>
                 </ul>
